@@ -8,6 +8,8 @@ namespace GameServer
         {
             Console.Title = "Game Server";
 
+            Server.Start(50, 29950);
+
             Console.ReadKey();
         }
     }
