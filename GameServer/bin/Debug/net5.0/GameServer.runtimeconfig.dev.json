@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\camdo\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\camdo\\.nuget\\packages"
+    ]
+  }
+}
