@@ -112,7 +112,7 @@ namespace GameServer
                         using (Packet _packet = new Packet(_packetBytes))
                         {
                             int _packetId = _packet.ReadInt();
-                            packetHandlers[_packetId](_packet);
+                            Server.packetHandlers[_packetId](id, _packet);
                         }
                     });
 
