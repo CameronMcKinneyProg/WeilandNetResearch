@@ -23,7 +23,18 @@ namespace GameServer
         /// </summary>
         private static void MainThread()
         {
-            Console.WriteLine("Main thread started. Running at {} ticks per second.");
+            Console.WriteLine($"Main thread started. Running at {Constants.TICKS_PER_SEC} ticks per second.");
+            DateTime _nextTick = DateTime.Now;
+
+            while (isRunning)
+            {
+                while (_nextTick < DateTime.Now)
+                {
+                    GameLogic.Update();
+
+                    _nextTick = _nextTick.AddMilliseconds(Constants.MS_PER_TICK);
+                }
+            }
         }
     }
 }
