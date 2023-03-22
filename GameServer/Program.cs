@@ -33,6 +33,11 @@ namespace GameServer
                     GameLogic.Update();
 
                     _nextTick = _nextTick.AddMilliseconds(Constants.MS_PER_TICK);
+
+                    if (_nextTick > DateTime.Now)
+                    {
+                        Thread.Sleep(_nextTick - DateTime.Now);
+                    }
                 }
             }
         }
