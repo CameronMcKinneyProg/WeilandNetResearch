@@ -190,7 +190,7 @@ public class Client : MonoBehaviour
             }
         }
 
-        private void SendData(Packet _packet)
+        public void SendData(Packet _packet)
         {
             try
             {
