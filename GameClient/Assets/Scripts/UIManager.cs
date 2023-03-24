@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance; // singleton
 
-    public GameObject startMenu;
-    public TMP_InputField usernameField;
+    [SerializeField] private GameObject startMenu;
+    [SerializeField] private TMP_InputField usernameField;
 
     private void Awake()
     {
