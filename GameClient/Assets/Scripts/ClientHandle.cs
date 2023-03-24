@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ClientHandle : MonoBehaviour
 {
-    public static void Welcome(Packet _packet)
+    // Start is called before the first frame update
+    void Start()
     {
-        string _msg = _packet.ReadString();
-        int _myId = _packet.ReadInt();
+        
+    }
 
-        Debug.Log($"Message from server: {_msg}");
-        Client.instance.myId = _myId;
-        // TODO: send welcome received packet
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
