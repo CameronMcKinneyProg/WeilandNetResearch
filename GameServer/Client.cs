@@ -25,7 +25,6 @@ namespace GameServer
 
             private readonly int id;
             private NetworkStream stream;
-            private Packet receivedData;
             private byte[] receiveBuffer;
 
             public TCP(int _id)
@@ -40,8 +39,6 @@ namespace GameServer
                 socket.SendBufferSize = dataBufferSize;
 
                 stream = socket.GetStream();
-
-                receivedData = new Packet();
 
                 receiveBuffer = new byte[dataBufferSize];
 
@@ -79,7 +76,7 @@ namespace GameServer
                     byte[] _data = new byte[_byteLength];
                     Array.Copy(receiveBuffer, _data, _byteLength);
 
-                    receivedData.Reset(HandleData(_data));
+                    // TODO: handle data
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
                 }
                 catch (Exception _ex)
@@ -87,52 +84,6 @@ namespace GameServer
                     Console.WriteLine($"Error receiving TCP data: {_ex}");
                     // TODO: disconnect
                 }
-            }
-
-            private bool HandleData(byte[] _data)
-            {
-                int _packetLength = 0;
-
-                receivedData.SetBytes(_data);
-
-                if (receivedData.UnreadLength() >= 4) // all packets start with a 4-byte int describing packet length
-                {
-                    _packetLength = receivedData.ReadInt();
-                    if (_packetLength <= 0)
-                    {
-                        return true;
-                    }
-                }
-
-                while (_packetLength > 0 && _packetLength <= receivedData.UnreadLength()) // receivedData contains at least 1 complete packet we can handle
-                {
-                    byte[] _packetBytes = receivedData.ReadBytes(_packetLength);
-                    ThreadManager.ExecuteOnMainThread(() =>
-                    {
-                        using (Packet _packet = new Packet(_packetBytes))
-                        {
-                            int _packetId = _packet.ReadInt();
-                            packetHandlers[_packetId](_packet);
-                        }
-                    });
-
-                    _packetLength = 0;
-                    if (receivedData.UnreadLength() >= 4) // all packets start with a 4-byte int describing packet length
-                    {
-                        _packetLength = receivedData.ReadInt();
-                        if (_packetLength <= 0)
-                        {
-                            return true;
-                        }
-                    }
-                }
-
-                if (_packetLength <= 1)
-                {
-                    return true;
-                }
-
-                return false;
             }
         }
     }
