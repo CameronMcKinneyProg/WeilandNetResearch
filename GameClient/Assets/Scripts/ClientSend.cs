@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class ClientSend : MonoBehaviour
 {
-    private static void SendTCPData(Packet _packet)
+    // Start is called before the first frame update
+    void Start()
     {
-        _packet.WriteLength();
-        Client.instance.tcp.SendData(_packet);
+        
     }
 
-    #region Packets
-    public static void WelcomeReceived()
+    // Update is called once per frame
+    void Update()
     {
-        using (Packet _packet = new Packet((int)ClientPackets.welcomeReceived))
-        {
-            _packet.Write(Client.instance.myId);
-            _packet.Write(UIManager.instance.usernameField.text);
-
-            SendTCPData(_packet);
-        }
+        
     }
-    #endregion
 }
