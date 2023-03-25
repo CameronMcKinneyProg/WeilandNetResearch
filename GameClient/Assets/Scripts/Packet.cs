@@ -6,14 +6,16 @@ using System.Text;
 public enum ServerPackets
 {
     welcome = 1,
-    udpTest
+    spawnPlayer,
+    playerPosition,
+    playerRotation
 }
 
 /// <summary>Sent from client to server.</summary>
 public enum ClientPackets
 {
     welcomeReceived = 1,
-    udpTestReceived
+    playerMovement
 }
 
 public class Packet : IDisposable
