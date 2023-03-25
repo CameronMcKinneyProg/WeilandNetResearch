@@ -17,14 +17,7 @@ namespace GameServer
                 Console.WriteLine($"Player \"{_username}\" (ID: {_fromClient}) has assumed an incorrect client ID ({_clientIdCheck})!");
             }
 
-            // TODO: send player into game
-        }
-
-        public static void UDPTestReceived(int _fromClient, Packet _packet)
-        {
-            string _msg = _packet.ReadString();
-
-            Console.WriteLine($"Received packet via UDP. Contains message: {_msg}");
+            Server.clients[_fromClient].SendIntoGame(_username);
         }
     }
 }
