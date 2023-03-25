@@ -348,6 +348,34 @@ public class Packet : IDisposable
             throw new Exception("Could not read value of type 'string'!");
         }
     }
+
+    /// <summary>Reads a Vector3 from the packet.</summary>
+    /// <param name="_moveReadPos">Whether or not to move the buffer's read position.</param>
+    public Vector3 ReadVector3(bool _moveReadPos = true)
+    {
+        try
+        {
+            return new Vector3(ReadFloat(_moveReadPos), ReadFloat(_moveReadPos), ReadFloat(_moveReadPos));
+        }
+        catch
+        {
+            throw new Exception("Could not read value of type 'Vector3'!");
+        }
+    }
+
+    /// <summary>Reads a Quaternion from the packet.</summary>
+    /// <param name="_moveReadPos">Whether or not to move the buffer's read position.</param>
+    public Quaternion ReadQuaternion(bool _moveReadPos = true)
+    {
+        try
+        {
+            return new Quaternion(ReadFloat(_moveReadPos), ReadFloat(_moveReadPos), ReadFloat(_moveReadPos), ReadFloat(_moveReadPos));
+        }
+        catch
+        {
+            throw new Exception("Could not read value of type 'Vector3'!");
+        }
+    }
     #endregion
 
     private bool disposed = false;
