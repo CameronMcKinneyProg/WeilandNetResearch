@@ -164,18 +164,18 @@ public class Packet : IDisposable
     /// <param name="_value">The Vector3 to add.</param>
     public void Write(Vector3 _value)
     {
-        Write(_value.X);
-        Write(_value.Y);
-        Write(_value.Z);
+        Write(_value.x);
+        Write(_value.y);
+        Write(_value.z);
     }
     /// <summary>Adds a Quaternion to the packet.</summary>
     /// <param name="_value">The Quaternion to add.</param>
     public void Write(Quaternion _value)
     {
-        Write(_value.X);
-        Write(_value.Y);
-        Write(_value.Z);
-        Write(_value.W);
+        Write(_value.x);
+        Write(_value.y);
+        Write(_value.z);
+        Write(_value.w);
     }
     #endregion
 
