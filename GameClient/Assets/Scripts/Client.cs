@@ -219,7 +219,7 @@ public class Client : MonoBehaviour
             }
             catch (Exception _ex)
             {
-                Debug.Log($"Error sending data to server via UDP: {_ex}");
+                Debug.LogError($"Error sending data to server via UDP: {_ex}");
             }
         }
 
