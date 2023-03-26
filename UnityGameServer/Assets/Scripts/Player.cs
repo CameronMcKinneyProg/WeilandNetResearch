@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
         moveSpeed *= Time.fixedDeltaTime;
-        moveSpeed *= Time.fixedDeltaTime;
+        jumpSpeed *= Time.fixedDeltaTime;
     }
 
     public void Initialize(int _id, string _username)
