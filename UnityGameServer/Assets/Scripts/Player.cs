@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
         inputs = new bool[4];
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         Vector2 _inputDirection = Vector2.zero;
         if (inputs[0])
