@@ -9,10 +9,10 @@ public class ServerHandle
         int _clientIdCheck = _packet.ReadInt();
         string _username = _packet.ReadString();
 
-        Console.WriteLine($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}.");
+        Debug.Log($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}.");
         if (_fromClient != _clientIdCheck)
         {
-            Console.WriteLine($"Player \"{_username}\" (ID: {_fromClient}) has assumed an incorrect client ID ({_clientIdCheck})!");
+            Debug.Log($"Player \"{_username}\" (ID: {_fromClient}) has assumed an incorrect client ID ({_clientIdCheck})!");
         }
 
         Server.clients[_fromClient].SendIntoGame(_username);
