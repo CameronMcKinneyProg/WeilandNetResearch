@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static NetworkManager instance;
+
+    public GameObject playerPrefab;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Debug.Log("NetworkManager instance already exists, destroying object!");
+            Destroy(this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Player InstantiatePlayer()
     {
-        
+        return Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<Player>();
     }
 }
