@@ -28,19 +28,19 @@ public class Player : MonoBehaviour
         Vector2 _inputDirection = Vector2.zero;
         if (inputs[0])
         {
-            _inputDirection.Y += 1;
+            _inputDirection.y += 1;
         }
         if (inputs[1])
         {
-            _inputDirection.Y -= 1;
+            _inputDirection.y -= 1;
         }
         if (inputs[2])
         {
-            _inputDirection.X += 1;
+            _inputDirection.x += 1;
         }
         if (inputs[3])
         {
-            _inputDirection.X -= 1;
+            _inputDirection.x -= 1;
         }
 
         Move(_inputDirection);
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         Vector3 _forward = Vector3.Transform(new Vector3(0, 0, 1), rotation);
         Vector3 _right = Vector3.Normalize(Vector3.Cross(_forward, new Vector3(0, 1, 0)));
 
-        Vector3 _moveDirection = _right * _inputDirection.X + _forward * _inputDirection.Y;
+        Vector3 _moveDirection = _right * _inputDirection.x + _forward * _inputDirection.x;
         position += _moveDirection * moveSpeed;
 
         ServerSend.PlayerPosition(this);
