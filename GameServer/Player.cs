@@ -22,6 +22,8 @@ namespace GameServer
             username = _username;
             position = _spawnPosition;
             rotation = Quaternion.Identity;
+
+            inputs = new bool[4];
         }
 
         public void Update()
