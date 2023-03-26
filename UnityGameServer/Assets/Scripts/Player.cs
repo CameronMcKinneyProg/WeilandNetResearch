@@ -31,11 +31,11 @@ public class Player : MonoBehaviour
         }
         if (inputs[2])
         {
-            _inputDirection.x += 1;
+            _inputDirection.x -= 1;
         }
         if (inputs[3])
         {
-            _inputDirection.x -= 1;
+            _inputDirection.x += 1;
         }
 
         Move(_inputDirection);
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     private void Move(Vector2 _inputDirection)
     {
-        Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.x;
+        Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.y;
         transform.position += _moveDirection * moveSpeed;
 
         ServerSend.PlayerPosition(this);
