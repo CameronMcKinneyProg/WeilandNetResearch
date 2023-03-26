@@ -20,6 +20,14 @@ public class NetworkManager : MonoBehaviour
             Destroy(this);
         }
     }
+    private void Start()
+    {
+        #if UNITY_EDITOR
+        Debug.Log("Build the project to start the server!");
+        #else
+        Server.Start(50, 29950);
+        #endif
+    }
 
     public Player InstantiatePlayer()
     {
