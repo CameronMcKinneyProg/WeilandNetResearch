@@ -53,6 +53,6 @@ public class Player : MonoBehaviour
     public void SetInput(bool[] _inputs, Quaternion _rotation)
     {
         inputs = _inputs;
-        rotation = _rotation;
+        transform.rotation = _rotation;
     }
 }
