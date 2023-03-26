@@ -132,9 +132,9 @@ MonoBehaviour:
   id: 0
   username: 
   controller: {fileID: 7871718387382320532}
-  gravity: -9.81
+  gravity: -19.62
   moveSpeed: 5
-  jumpSpeed: 5
+  jumpSpeed: 9
 --- !u!143 &7871718387382320532
 CharacterController:
   m_ObjectHideFlags: 0
