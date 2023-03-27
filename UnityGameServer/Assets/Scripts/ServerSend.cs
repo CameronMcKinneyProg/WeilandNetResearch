@@ -115,4 +115,15 @@ public class ServerSend
         }
     }
     #endregion
+
+    public static void PlayerHealth(Player _player)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.playerHealth))
+        {
+            _packet.Write(_player.id);
+            _packet.Write(_player.health);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
 }
