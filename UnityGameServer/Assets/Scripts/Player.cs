@@ -35,6 +35,11 @@ public class Player : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (health <= 0f)
+        {
+            return;
+        }
+
         Vector2 _inputDirection = Vector2.zero;
         if (inputs[0])
         {
@@ -86,6 +91,37 @@ public class Player : MonoBehaviour
 
     public void Shoot(Vector3 _shootDirection)
     {
+        if (Physics.Raycast(shootOrigin.position, _shootDirection, out RaycastHit _hit, 25f))
+        {
+            if (_hit.collider.CompareTag("Player"))
+            {
 
+            }
+        }
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        if (health <= 0f)
+        {
+            return;
+        }
+
+        health -= _damage;
+        if (health <= 0f)
+        {
+            health = 0f;
+            controller.enabled = false;
+            transform.position = new Vector3(0f, 25f, 0f);
+            ServerSend.PlayerPosition(this);
+        }
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(5f);
+
+        health = maxHealth;
+        controller.enabled = true;
     }
 }
