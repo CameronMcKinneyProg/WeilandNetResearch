@@ -115,6 +115,8 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(0f, 25f, 0f);
             ServerSend.PlayerPosition(this);
         }
+
+        ServerSend.PlayerHealth(this);
     }
 
     private IEnumerator Respawn()
@@ -123,5 +125,6 @@ public class Player : MonoBehaviour
 
         health = maxHealth;
         controller.enabled = true;
+        ServerSend.PlayerRespawned(this);
     }
 }

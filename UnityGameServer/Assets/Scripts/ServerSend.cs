@@ -126,4 +126,14 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void PlayerRespawned(Player _player)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.playerRespawned))
+        {
+            _packet.Write(_player.id);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
 }
