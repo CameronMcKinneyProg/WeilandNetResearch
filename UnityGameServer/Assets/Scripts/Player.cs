@@ -7,9 +7,12 @@ public class Player : MonoBehaviour
     public int id;
     public string username;
     public CharacterController controller;
+    public Transform shootOrigin;
     public float gravity = -9.81f;
     public float moveSpeed = 5f;
     public float jumpSpeed = 5f;
+    public float health;
+    public float maxHealth = 100f;
 
     private bool[] inputs;
     private float yVelocity = 0f;
@@ -25,6 +28,7 @@ public class Player : MonoBehaviour
     {
         id = _id;
         username = _username;
+        health = maxHealth;
 
         inputs = new bool[5];
     }
@@ -78,5 +82,10 @@ public class Player : MonoBehaviour
     {
         inputs = _inputs;
         transform.rotation = _rotation;
+    }
+
+    public void Shoot(Vector3 _shootDirection)
+    {
+
     }
 }
