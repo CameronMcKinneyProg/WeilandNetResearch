@@ -50,7 +50,7 @@ MonoBehaviour:
   id: 0
   username: 
   health: 0
-  maxHealth: 0
+  maxHealth: 100
   model: {fileID: 1176732009230093893}
 --- !u!114 &2911052750826631671
 MonoBehaviour:

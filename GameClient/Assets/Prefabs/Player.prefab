@@ -48,7 +48,7 @@ MonoBehaviour:
   id: 0
   username: 
   health: 0
-  maxHealth: 0
+  maxHealth: 100
   model: {fileID: 1176732009230093893}
 --- !u!1 &7034626351782302447
 GameObject:
