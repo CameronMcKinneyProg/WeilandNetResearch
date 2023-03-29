@@ -56,13 +56,13 @@ public class ClientHandle : MonoBehaviour
         int _id = _packet.ReadInt();
         float _health = _packet.ReadFloat();
 
-
+        GameManager.players[_id].SetHealth(_health);
     }
 
     public static void PlayerRespawned(Packet _packet)
     {
         int _id = _packet.ReadInt();
 
-
+        GameManager.players[_id].Respawn();
     }
 }
