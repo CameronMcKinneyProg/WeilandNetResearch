@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int spawnerId;
+    public bool hasItem;
+    public MeshRenderer itemModel;
 
-    // Update is called once per frame
-    void Update()
+    private Vector3 basePosition;
+
+    public void Initialize(int _spawnerId, bool _hasItem)
     {
-        
+        spawnerId = _spawnerId;
+        hasItem = _hasItem;
+        itemModel.enabled = _hasItem;
+
+        basePosition = transform.position;
     }
 }
