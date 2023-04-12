@@ -65,4 +65,13 @@ public class ClientHandle : MonoBehaviour
 
         GameManager.players[_id].Respawn();
     }
+
+    public static void CreateItemSpawner(Packet _packet)
+    {
+        int _spawnerId = _packet.ReadInt();
+        Vector3 _spawnerPosition = _packet.ReadVector3();
+        bool _hasItem = _packet.ReadBool();
+
+
+    }
 }
