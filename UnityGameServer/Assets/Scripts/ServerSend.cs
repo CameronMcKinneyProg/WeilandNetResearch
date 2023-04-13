@@ -167,5 +167,16 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void ItemPickedUp(int _spawnerId, int _byPlayer)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.itemPickedUp))
+        {
+            _packet.Write(_spawnerId);
+            _packet.Write(_byPlayer);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
     #endregion
 }
