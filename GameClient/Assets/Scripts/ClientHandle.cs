@@ -72,6 +72,6 @@ public class ClientHandle : MonoBehaviour
         Vector3 _spawnerPosition = _packet.ReadVector3();
         bool _hasItem = _packet.ReadBool();
 
-
+        GameManager.instance.CreateItemSpawner(_spawnerId, _spawnerPosition, _hasItem);
     }
 }
