@@ -283,7 +283,8 @@ public class Client : MonoBehaviour
             { (int)ServerPackets.playerRespawned, ClientHandle.PlayerRespawned },
             { (int)ServerPackets.playerHealth, ClientHandle.PlayerHealth },
             { (int)ServerPackets.createItemSpawner, ClientHandle.CreateItemSpawner },
-            { (int)ServerPackets.itemSpawned, ClientHandle.ItemSpawned }
+            { (int)ServerPackets.itemSpawned, ClientHandle.ItemSpawned },
+            { (int)ServerPackets.itemPickedUp, ClientHandle.ItemPickedUp }
         };
         Debug.Log("Initialised packets.");
     }
