@@ -43,6 +43,7 @@ public class ItemSpawner : MonoBehaviour
     private void ItemPickedUp(int _byPlayer)
     {
         hasItem = false;
+        ServerSend.ItemPickedUp(spawnerId, _byPlayer);
 
         StartCoroutine(SpawnItem());
     }
