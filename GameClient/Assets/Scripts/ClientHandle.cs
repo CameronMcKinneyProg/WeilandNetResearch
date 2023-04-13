@@ -74,4 +74,11 @@ public class ClientHandle : MonoBehaviour
 
         GameManager.instance.CreateItemSpawner(_spawnerId, _spawnerPosition, _hasItem);
     }
+
+    public static void ItemSpawned(Packet _packet)
+    {
+        int _spawnerId = _packet.ReadInt();
+
+        GameManager.itemSpawners[_spawnerId].ItemSpawned();
+    }
 }
