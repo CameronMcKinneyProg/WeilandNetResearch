@@ -8,7 +8,18 @@ public class ItemSpawner : MonoBehaviour
     public bool hasItem;
     public MeshRenderer itemModel;
 
+    public float itemRotationSpeed = 50f;
+    public float itemBobSpeed = 2f;
     private Vector3 basePosition;
+
+    private void Update()
+    {
+        if (hasItem)
+        {
+            transform.Rotate(Vector3.up, itemRotationSpeed * Time.deltaTime, Space.World);
+            transform.position = basePosition + new Vector3(0f, 0.25f * Mathf.Sin(Time.time * itemBobSpeed), 0f);
+        }
+    }
 
     public void Initialize(int _spawnerId, bool _hasItem)
     {
