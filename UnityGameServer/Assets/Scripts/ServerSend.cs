@@ -157,5 +157,15 @@ public class ServerSend
             SendTCPData(_toClient, _packet);
         }
     }
+
+    public static void ItemSpawned(int _spawnerId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.itemSpawned))
+        {
+            _packet.Write(_spawnerId);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
     #endregion
 }
