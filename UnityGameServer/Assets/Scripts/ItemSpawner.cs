@@ -37,6 +37,7 @@ public class ItemSpawner : MonoBehaviour
         yield return new WaitForSeconds(10f);
 
         hasItem = true;
+        ServerSend.ItemSpawned(spawnerId);
     }
 
     private void ItemPickedUp(int _byPlayer)
