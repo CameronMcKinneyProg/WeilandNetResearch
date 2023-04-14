@@ -4,15 +4,60 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static Dictionary<int, Projectile> projectiles = new Dictionary<int, Projectile>();
+    private static int nextProjectileId = 1;
+
+    public int id;
+    public Rigidbody rigidBody;
+    public int thrownByPlayer;
+    public Vector3 initialForce;
+    public float explosionRadius = 1.75f;
+    public float explosionDamage = 75f;
+
+    private void Start()
+    {
+        id = nextProjectileId;
+        nextProjectileId++;
+        projectiles.Add(id, this);
+
+        rigidBody.AddForce(initialForce);
+        StartCoroutine(ExplodeAfterSeconds(10f));
+    }
+
+    private void FixedUpdate()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        Explode();
+    }
+
+    public void Initialize(Vector3 _initialMovementDir, float _initialForceStrength, int _thrownByPlayer)
+    {
+        initialForce = _initialMovementDir * _initialForceStrength;
+        thrownByPlayer = _thrownByPlayer;
+    }
+
+    private void Explode()
+    {
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider _collider in _colliders)
+        {
+            if (_collider.CompareTag("Player"))
+            {
+                _collider.GetComponent<Player>().TakeDamage(explosionDamage);
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
+    private IEnumerator ExplodeAfterSeconds(float _seconds)
+    {
+        yield return new WaitForSeconds(_seconds);
+
+        Explode();
     }
 }
