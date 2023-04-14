@@ -59,6 +59,9 @@ public class ServerSend
     }
 
     #region Packets
+    /// <summary>Sends a welcome message to the given client.</summary>
+    /// <param name="_toClient">The client to send the packet to.</param>
+    /// <param name="_msg">The message to send.</param>
     public static void Welcome(int _toClient, string _msg)
     {
         using (Packet _packet = new Packet((int)ServerPackets.welcome))
@@ -70,6 +73,9 @@ public class ServerSend
         }
     }
 
+    /// <summary>Tells a client to spawn a player.</summary>
+    /// <param name="_toClient">The client that should spawn the player.</param>
+    /// <param name="_player">The player to spawn.</param>
     public static void SpawnPlayer(int _toClient, Player _player)
     {
         using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
@@ -83,6 +89,8 @@ public class ServerSend
         }
     }
 
+    /// <summary>Sends a player's updated position to all clients.</summary>
+    /// <param name="_player">The player whose position should be updated.</param>
     public static void PlayerPosition(Player _player)
     {
         using (Packet _packet = new Packet((int)ServerPackets.playerPosition))
@@ -94,6 +102,8 @@ public class ServerSend
         }
     }
 
+    /// <summary>Sends a player's updated rotation to all clients except themself (to avoid overwriting the local player's rotation).</summary>
+    /// <param name="_player">The player whose rotation should be updated.</param>
     public static void PlayerRotation(Player _player)
     {
         using (Packet _packet = new Packet((int)ServerPackets.playerRotation))
@@ -114,7 +124,6 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
-    #endregion
 
     public static void PlayerHealth(Player _player)
     {
@@ -136,4 +145,38 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void CreateItemSpawner(int _toClient, int _spawnerId, Vector3 _spawnerPosition, bool _hasItem)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.createItemSpawner))
+        {
+            _packet.Write(_spawnerId);
+            _packet.Write(_spawnerPosition);
+            _packet.Write(_hasItem);
+
+            SendTCPData(_toClient, _packet);
+        }
+    }
+
+    public static void ItemSpawned(int _spawnerId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.itemSpawned))
+        {
+            _packet.Write(_spawnerId);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void ItemPickedUp(int _spawnerId, int _byPlayer)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.itemPickedUp))
+        {
+            _packet.Write(_spawnerId);
+            _packet.Write(_byPlayer);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+    #endregion
 }
