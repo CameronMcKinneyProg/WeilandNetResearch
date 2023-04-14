@@ -16,15 +16,6 @@ public class ClientSend : MonoBehaviour
         Client.instance.udp.SendData(_packet);
     }
 
-    public static void PlayerShoot(Vector3 _facing)
-    {
-        using (Packet _packet = new Packet((int)ClientPackets.playerShoot))
-        {
-            _packet.Write(_facing);
-
-            SendTCPData(_packet);
-        }
-    }
     #region Packets
     public static void WelcomeReceived()
     {
@@ -49,6 +40,26 @@ public class ClientSend : MonoBehaviour
             _packet.Write(GameManager.players[Client.instance.myId].transform.rotation);
 
             SendUDPData(_packet);
+        }
+    }
+
+    public static void PlayerShoot(Vector3 _facing)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.playerShoot))
+        {
+            _packet.Write(_facing);
+
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void PlayerThrowItem(Vector3 _facing)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.playerThrowItem))
+        {
+            _packet.Write(_facing);
+
+            SendTCPData(_packet);
         }
     }
     #endregion

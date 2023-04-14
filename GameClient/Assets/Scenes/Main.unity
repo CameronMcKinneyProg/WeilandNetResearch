@@ -1397,6 +1397,7 @@ MonoBehaviour:
   localPlayerPrefab: {fileID: 2339870717480938743, guid: ff4310d8c118a50468a2f9e8081a41d0, type: 3}
   playerPrefab: {fileID: 2339870717480938743, guid: 00dd860c372890845b71dda42c097512, type: 3}
   itemSpawnerPrefab: {fileID: 6856784346764793609, guid: bfb7eb3d5f49e3f40b5f00d6619eb253, type: 3}
+  projectilePrefab: {fileID: 5459991677927829447, guid: 2910bf26783833d4cb7c7bdd808eeac5, type: 3}
 --- !u!4 &756797134
 Transform:
   m_ObjectHideFlags: 0
