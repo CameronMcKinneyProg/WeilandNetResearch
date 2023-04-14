@@ -162,6 +162,8 @@ Transform:
   - {fileID: 1694022372}
   - {fileID: 1173324926}
   - {fileID: 871868399}
+  - {fileID: 1123162815}
+  - {fileID: 1098115229}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -403,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4725783832709187771, guid: 58895188b8538b74299dbab7714002eb, type: 3}
+  projectilePrefab: {fileID: 4793949936628137485, guid: 9bb9856d32089cb45a49ac4230a17290, type: 3}
 --- !u!4 &418213665
 Transform:
   m_ObjectHideFlags: 0
@@ -952,8 +955,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1575039}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1098115230
 MonoBehaviour:
@@ -1109,8 +1112,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1575039}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1123162816
 MonoBehaviour:
