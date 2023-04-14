@@ -55,6 +55,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
+        projectiles.Remove(id);
         Destroy(gameObject);
     }
 

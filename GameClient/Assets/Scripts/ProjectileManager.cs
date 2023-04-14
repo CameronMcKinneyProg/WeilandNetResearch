@@ -16,6 +16,7 @@ public class ProjectileManager : MonoBehaviour
     {
         transform.position = _position;
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        GameManager.projectiles.Remove(id);
         Destroy(gameObject);
     }
 }
