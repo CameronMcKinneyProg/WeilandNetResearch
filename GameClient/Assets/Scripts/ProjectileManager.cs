@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int id;
+    public GameObject explosionPrefab;
+
+    public void Initialize(int _id)
     {
-        
+        id = _id;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Explode(Vector3 _position)
     {
-        
+        transform.position = _position;
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
