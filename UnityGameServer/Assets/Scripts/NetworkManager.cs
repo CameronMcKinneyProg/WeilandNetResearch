@@ -41,6 +41,8 @@ public class NetworkManager : MonoBehaviour
 
     public Projectile InstantiateProjectile(Transform _shootOrigin)
     {
+        // multiply by 0.7f to avoid exploding on player that throws this projectile.
+        // TODO: in Projectile.cs: check colliders against thrownByPlayer's collider before exploding.
         return Instantiate(
             projectilePrefab,
             _shootOrigin.position + _shootOrigin.forward * 0.7f,
