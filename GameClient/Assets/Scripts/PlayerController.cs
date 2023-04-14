@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
             ClientSend.PlayerShoot(camTransform.forward);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1)
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             ClientSend.PlayerThrowItem(camTransform.forward);
         }
