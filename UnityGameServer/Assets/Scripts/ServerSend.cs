@@ -185,6 +185,7 @@ public class ServerSend
         {
             _packet.Write(_projectile.id);
             _packet.Write(_projectile.transform.position);
+            _packet.Write(_thrownByPlayer);
 
             SendTCPDataToAll(_packet);
         }
