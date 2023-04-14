@@ -20,13 +20,15 @@ public class Projectile : MonoBehaviour
         nextProjectileId++;
         projectiles.Add(id, this);
 
+        ServerSend.SpawnProjectile(this, thrownByPlayer);
+
         rigidBody.AddForce(initialForce);
         StartCoroutine(ExplodeAfterSeconds(10f));
     }
 
     private void FixedUpdate()
     {
-        
+        ServerSend.ProjectilePosition(this);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,6 +44,8 @@ public class Projectile : MonoBehaviour
 
     private void Explode()
     {
+        ServerSend.ProjectileExploded(this);
+
         Collider[] _colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider _collider in _colliders)
         {
