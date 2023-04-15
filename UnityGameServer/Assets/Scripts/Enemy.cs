@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 30f;
     public float shootRange = 15f;
     public float shootAccuracy = 0.1f;
+    public float shootDamage = 50f;
     public float patrolDuration = 3f;
     public float idleDuration = 1f;
 
@@ -44,10 +45,13 @@ public class Enemy : MonoBehaviour
         switch (state)
         {
             case EnemyState.idle:
-
+                LookForPlayer();
                 break;
             case EnemyState.patrol:
-
+                if (!LookForPlayer())
+                {
+                    Patrol();
+                }
                 break;
             case EnemyState.chase:
 
@@ -77,7 +81,7 @@ public class Enemy : MonoBehaviour
                             if (isPatrolRoutineRunning)
                             {
                                 isPatrolRoutineRunning = false;
-                                // TODO: cancel patrol routine
+                                StopCoroutine(StartPatrol());
                             }
 
                             state = EnemyState.chase;
@@ -97,6 +101,8 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(StartPatrol());
         }
+
+        Move(transform.forward, patrolSpeed);
     }
 
     private IEnumerator StartPatrol()
@@ -106,6 +112,73 @@ public class Enemy : MonoBehaviour
         transform.forward = new Vector3(_randomPatrolDirection.x, 0f, _randomPatrolDirection.y);
 
         yield return new WaitForSeconds(patrolDuration);
+
+        state = EnemyState.idle;
+
+        yield return new WaitForSeconds(idleDuration);
+
+        state = EnemyState.patrol;
+        isPatrolRoutineRunning = false;
+    }
+
+    private void Move(Vector3 _direction, float _speed)
+    {
+        _direction.y = 0f;
+        transform.forward = _direction;
+        Vector3 _movement = transform.forward * _speed;
+
+        if (controller.isGrounded)
+        {
+            yVelocity = 0f;
+        }
+        yVelocity += gravity;
+
+        _movement.y = yVelocity;
+        controller.Move(_movement);
+    }
+
+    private void Shoot(Vector3 _shootDirection)
+    {
+        if (Physics.Raycast(shootOrigin.position, _shootDirection, out RaycastHit _hit, shootRange))
+        {
+            if (_hit.collider.CompareTag("Player"))
+            {
+                if (Random.value <= shootAccuracy)
+                {
+                    _hit.collider.GetComponent<Player>().TakeDamage(shootDamage);
+                }
+            }
+        }
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        health -= _damage;
+        if (health <= 0f)
+        {
+            health = 0f;
+
+            enemies.Remove(id);
+            Destroy(gameObject);
+        }
+    }
+
+    private bool CanSeeTarget()
+    {
+        if (target == null)
+        {
+            return false;
+        }
+
+        if (Physics.Raycast(shootOrigin.position, target.transform.position - transform.position, out RaycastHit _hit, detectionRange))
+        {
+            if (_hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
