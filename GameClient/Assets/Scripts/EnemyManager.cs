@@ -20,6 +20,7 @@ public class EnemyManager : MonoBehaviour
 
         if (health <= 0f)
         {
+            GameManager.enemies.Remove(id);
             Destroy(gameObject);
         }
     }
