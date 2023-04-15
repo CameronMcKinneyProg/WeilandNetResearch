@@ -54,10 +54,10 @@ public class Enemy : MonoBehaviour
                 }
                 break;
             case EnemyState.chase:
-
+                Chase();
                 break;
             case EnemyState.attack:
-
+                Attack();
                 break;
             default:
                 break;
@@ -119,6 +119,51 @@ public class Enemy : MonoBehaviour
 
         state = EnemyState.patrol;
         isPatrolRoutineRunning = false;
+    }
+
+    private void Chase()
+    {
+        if (CanSeeTarget())
+        {
+            Vector3 _enemyToPlayer = target.transform.position - transform.position;
+
+            if (_enemyToPlayer.magnitude <= shootRange)
+            {
+                state = EnemyState.attack;
+            }
+            else
+            {
+                Move(_enemyToPlayer, chaseSpeed);
+            }
+        }
+        else
+        {
+            target = null;
+            state = EnemyState.patrol;
+        }
+    }
+
+    private void Attack()
+    {
+        if (CanSeeTarget())
+        {
+            Vector3 _enemyToPlayer = target.transform.position - transform.position;
+            transform.forward = new Vector3(_enemyToPlayer.x, 0f, _enemyToPlayer.z);
+
+            if (_enemyToPlayer.magnitude <= shootRange)
+            {
+                Shoot(_enemyToPlayer);
+            }
+            else
+            {
+                Move(_enemyToPlayer, chaseSpeed);
+            }
+        }
+        else
+        {
+            target = null;
+            state = EnemyState.patrol;
+        }
     }
 
     private void Move(Vector3 _direction, float _speed)
