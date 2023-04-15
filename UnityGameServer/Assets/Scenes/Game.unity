@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4725783832709187771, guid: 58895188b8538b74299dbab7714002eb, type: 3}
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 4725783832709187771, guid: c6719e0169cb58342a444071f74ac813, type: 3}
   projectilePrefab: {fileID: 4793949936628137485, guid: 9bb9856d32089cb45a49ac4230a17290, type: 3}
 --- !u!4 &418213665
 Transform:
