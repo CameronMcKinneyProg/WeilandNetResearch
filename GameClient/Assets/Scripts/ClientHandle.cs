@@ -118,4 +118,31 @@ public class ClientHandle : MonoBehaviour
 
         GameManager.projectiles[_projectileId].Explode(_position);
     }
+
+    public static void SpawnEnemy(Packet _packet)
+    {
+        int _enemyId = _packet.ReadInt();
+        Vector3 _position = _packet.ReadVector3();
+
+        GameManager.instance.SpawnEnemy(_enemyId, _position);
+    }
+
+    public static void EnemyPosition(Packet _packet)
+    {
+        int _enemyId = _packet.ReadInt();
+        Vector3 _position = _packet.ReadVector3();
+
+        if (GameManager.enemies.TryGetValue(_enemyId, out EnemyManager _enemy))
+        {
+            _enemy.transform.position = _position;
+        }
+    }
+
+    public static void EnemyHealth(Packet _packet)
+    {
+        int _enemyId = _packet.ReadInt();
+        float _health = _packet.ReadFloat();
+
+        GameManager.enemies[_enemyId].SetHealth(_health);
+    }
 }
