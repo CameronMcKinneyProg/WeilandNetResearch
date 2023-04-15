@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour
         nextEnemyId++;
         enemies.Add(id, this);
 
+        ServerSend.SpawnEnemy(this);
+
         state = EnemyState.patrol;
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
         patrolSpeed *= Time.fixedDeltaTime;
@@ -180,6 +182,8 @@ public class Enemy : MonoBehaviour
 
         _movement.y = yVelocity;
         controller.Move(_movement);
+
+        ServerSend.EnemyPosition(this);
     }
 
     private void Shoot(Vector3 _shootDirection)
@@ -206,6 +210,8 @@ public class Enemy : MonoBehaviour
             enemies.Remove(id);
             Destroy(gameObject);
         }
+
+        ServerSend.EnemyHealth(this);
     }
 
     private bool CanSeeTarget()
