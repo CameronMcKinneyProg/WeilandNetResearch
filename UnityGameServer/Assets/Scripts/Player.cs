@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed = 5f;
     public float throwForce = 600f;
+    public float shootDamage = 50f;
+    public float shootRange = 25f;
     public float health;
     public float maxHealth = 100f;
     public int itemAmount = 0;
@@ -99,11 +101,15 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Physics.Raycast(shootOrigin.position, _shootDirection, out RaycastHit _hit, 25f))
+        if (Physics.Raycast(shootOrigin.position, _shootDirection, out RaycastHit _hit, shootRange))
         {
             if (_hit.collider.CompareTag("Player"))
             {
-                _hit.collider.GetComponent<Player>().TakeDamage(50f);
+                _hit.collider.GetComponent<Player>().TakeDamage(shootDamage);
+            }
+            else if (_hit.collider.CompareTag("Enemy"))
+            {
+                _hit.collider.GetComponent<Enemy>().TakeDamage(shootDamage);
             }
         }
     }
