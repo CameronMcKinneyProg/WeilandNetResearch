@@ -259,7 +259,7 @@ public class ServerSend
             _packet.Write(_enemy.id);
             _packet.Write(_enemy.health);
 
-            SendUDPDataToAll(_packet);
+            SendTCPDataToAll(_packet);
         }
     }
     #endregion
