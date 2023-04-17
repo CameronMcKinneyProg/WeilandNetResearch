@@ -195,6 +195,7 @@ public class Enemy : MonoBehaviour
                 if (Random.value <= shootAccuracy)
                 {
                     _hit.collider.GetComponent<Player>().TakeDamage(shootDamage);
+                    Debug.DrawRay(shootOrigin.position, _shootDirection, Color.red, 2f);
                 }
             }
         }
